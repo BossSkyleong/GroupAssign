@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    tools:context=".mode3">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/textScreen"
+        android:layout_gravity="center"
+        android:text="Country's Culture"
+        android:textColor="#FFF"
+        android:textSize="22sp" />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:background="@drawable/bgquestion"
+        android:orientation="vertical"
+        android:layout_width="350dp"
+        android:layout_height="120dp" >
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/textQues"
+            android:layout_gravity="center"
+            android:textColor="#332FA2"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:lineSpacingExtra="4dp"/>
+
+     </LinearLayout>
+    <ImageView
+        android:id="@+id/quesImage"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:adjustViewBounds="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <!-- Left side options -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Option 1 -->
+            <TextView
+                android:id="@+id/Ans1"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="20dp"
+                android:text="Kimono"
+                android:textColor="#332FA2"
+                android:textSize="16sp"
+                android:background="@drawable/bgpurple"
+                android:gravity="center"
+                android:clickable="true"
+                android:onClick="onOptionClick"/>
+
+            <!-- Option 2 -->
+            <TextView
+                android:id="@+id/Ans2"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Sari"
+                android:textColor="#332FA2"
+                android:textSize="16sp"
+                android:background="@drawable/bgpurple"
+                android:gravity="center"
+                android:clickable="true"
+                android:onClick="onOptionClick"/>
+
+        </LinearLayout>
+
+        <!-- Right side options -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Option 3 -->
+            <TextView
+                android:id="@+id/Ans3"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="20dp"
+                android:text="Hanbok"
+                android:textColor="#332FA2"
+                android:textSize="16sp"
+                android:background="@drawable/bgpurple"
+                android:gravity="center"
+                android:clickable="true"
+                android:onClick="onOptionClick"/>
+
+            <!-- Option 4 -->
+            <TextView
+                android:id="@+id/Ans4"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Lederhosen"
+                android:textColor="#332FA2"
+                android:textSize="16sp"
+                android:background="@drawable/bgpurple"
+                android:gravity="center"
+                android:clickable="true"
+                android:onClick="onOptionClick"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+
