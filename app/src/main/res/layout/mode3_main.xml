@@ -10,12 +10,59 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:id="@+id/textScreen"
         android:layout_gravity="center"
         android:text="Country's Culture"
         android:textColor="#FFF"
-        android:textSize="22sp" />
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <!-- Navigation buttons -->
+    <TextView
+        android:id="@+id/questionNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="Question 1/10"
+        android:textColor="#FFF"
+        android:textSize="15sp"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="355dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/prevButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="160dp"
+            android:onClick="onPrevButtonClick"
+            android:text="Prev"
+            android:textSize="10sp"/>
+
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:onClick="onNextButtonClick"
+            android:text="Next"
+            android:textSize="10sp"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_marginTop="10dp"

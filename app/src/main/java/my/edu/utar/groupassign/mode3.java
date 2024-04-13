@@ -18,9 +18,7 @@ public class mode3 extends AppCompatActivity {
 
     private int currQues = 0;
     private int correctAnswers = 0;
-
-
-
+    private boolean ansAllQues = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +48,7 @@ public class mode3 extends AppCompatActivity {
 
         quizQuestions = new mode3_1[]{
                 new mode3_1("What is the traditional Japanese garment worn for formal occasions?",
-                        new String[]{"Lederhosen","Sari", "Hanbok", "Kimono" },
+                        new String[]{"Lederhosen", "Sari", "Hanbok", "Kimono"},
                         3, R.drawable.kimono),
                 new mode3_1("Which Japanese city is famous for its cherry blossom festival?",
                         new String[]{"Tokyo", "Kyoto", "Osaka", "Hiroshima"},
@@ -103,6 +101,11 @@ public class mode3 extends AppCompatActivity {
         for (int i = 0; i < options.length; i++) {
             choice[i].setText(options[i]);
         }
+
+        int questionNumber = getQuestion + 1; // Question numbers start from 1
+        int totalQuestions = quizQuestions.length;
+        TextView questionNumberTextView = findViewById(R.id.questionNumber);
+        questionNumberTextView.setText("Question " + questionNumber + " / " + totalQuestions);
     }
 
     public void onOptionClick(int selectedOption) {
@@ -124,10 +127,31 @@ public class mode3 extends AppCompatActivity {
     }
 
     private void endQuiz() {
+        if(ansAllQues){
         Toast.makeText(this, "Hooray! You have answered all questions", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, ScoreActivity.class);
-        intent.putExtra("score",correctAnswers);
+        intent.putExtra("score", correctAnswers);
         startActivity(intent);
+    } else {
+            Toast.makeText(this, "Please answer all the quiz!!", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void onPrevButtonClick(View view) {
+        if (currQues > 0) {
+            currQues--;
+            displayQuestion(currQues);
+        } else {
+            Toast.makeText(this, "You are on the first question", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onNextButtonClick(View view) {
+        if (currQues < quizQuestions.length - 1) {
+            currQues++;
+            displayQuestion(currQues);
+        } else {
+            Toast.makeText(this, "You are on the last question", Toast.LENGTH_SHORT).show();
+        }
     }
 }
 
