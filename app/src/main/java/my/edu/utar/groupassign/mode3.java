@@ -1,11 +1,13 @@
 package my.edu.utar.groupassign;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +21,7 @@ public class mode3 extends AppCompatActivity {
     private int currQues = 0;
     private int correctAnswers = 0;
     private boolean ansAllQues = false;
+    private int[] userAnswers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +90,7 @@ public class mode3 extends AppCompatActivity {
                         3, R.drawable.hanbok)
 
         };
-
+        userAnswers = new int[quizQuestions.length];
         displayQuestion(currQues);
 
     }
@@ -100,9 +103,22 @@ public class mode3 extends AppCompatActivity {
         String[] options = currQues.getOptions();
         for (int i = 0; i < options.length; i++) {
             choice[i].setText(options[i]);
+
+            if (userAnswers[getQuestion] != -1) {
+                // Question has been answered, set text color for selected option
+                if (userAnswers[getQuestion] == i) {
+                    choice[i].setTextColor(getResources().getColor(R.color.colorAccent));
+                } else {
+                    choice[i].setTextColor(Color.parseColor("#332FA2")); // Set default text color for other options
+                }
+            } else {
+                // Question has not been answered, set default text color for all options
+                choice[i].setTextColor(Color.parseColor("#332FA2"));
+            }
+
         }
 
-        int questionNumber = getQuestion + 1; // Question numbers start from 1
+        int questionNumber = getQuestion + 1;
         int totalQuestions = quizQuestions.length;
         TextView questionNumberTextView = findViewById(R.id.questionNumber);
         questionNumberTextView.setText("Question " + questionNumber + " / " + totalQuestions);
@@ -113,29 +129,46 @@ public class mode3 extends AppCompatActivity {
         if (selectedOption == correctOption) {
             correctAnswers++;
         }
-        nextQuestion();
-    }
 
-    private void nextQuestion() {
-        currQues++;
+        // Change text color of the selected option to colorAccent
+        choice[selectedOption].setTextColor(getResources().getColor(R.color.colorAccent));
 
-        if (currQues < quizQuestions.length) {
-            displayQuestion(currQues);
-        } else {
+        // Change text color of other options back to default color
+        for (int i = 0; i < choice.length; i++) {
+            if (i != selectedOption) {
+                choice[i].setTextColor(Color.parseColor("#332FA2"));
+            }
+        }
+
+        // Store the user's answer for the current question
+        userAnswers[currQues] = selectedOption;
+
+        boolean allAnswered = true;
+        for (int answer : userAnswers) {
+            if (answer == -1) {
+                allAnswered = false;
+                break;
+            }
+        }
+        // If all questions have been answered, end the quiz
+        if (allAnswered && currQues == quizQuestions.length - 1) {
             endQuiz();
         }
     }
 
+
     private void endQuiz() {
-        if(ansAllQues){
-        Toast.makeText(this, "Hooray! You have answered all questions", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, ScoreActivity.class);
-        intent.putExtra("score", correctAnswers);
-        startActivity(intent);
-    } else {
+        ansAllQues = true;
+        if (ansAllQues) {
+            Toast.makeText(this, "Hooray! You have answered all questions", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, ScoreActivity.class);
+            intent.putExtra("score", correctAnswers);
+            startActivity(intent);
+        } else {
             Toast.makeText(this, "Please answer all the quiz!!", Toast.LENGTH_SHORT).show();
         }
     }
+
     public void onPrevButtonClick(View view) {
         if (currQues > 0) {
             currQues--;
